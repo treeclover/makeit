@@ -51,11 +51,6 @@
 				catch (Exception ignored) {
 				}
 			}
-			if(name != null) {
-				out.println("----------------------------------");
-			} else {
-				out.println("작성된 방명록이 존재하지 않습니다.");
-			}
 		%>
 		<FORM action=test_write.html method=POST>
 			<input type=submit value='글쓰기'>
