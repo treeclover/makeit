@@ -27,7 +27,7 @@
 					name = rs.getString("name");
 					message = rs.getString("content");
 		%>
-		글번호 : <%= num %> &nbsp;&nbsp;&nbsp; 글쓴이 : <%= name %> <BR>
+		글번호 : <%= num %>     글쓴이 : <%= name %> <BR>
 		제목 : <%= title %><BR><BR>
 		<%= message %><BR>
 		

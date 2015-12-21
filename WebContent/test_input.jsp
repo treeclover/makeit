@@ -6,7 +6,7 @@
 	String name = request.getParameter("author");
 	String message = request.getParameter("content");
 	if (title == null || name == null || message == null) 
-        throw new Exception("게시글 내용을 반드시 채우십시오.");
+        throw new Exception("방명록 작성 시 빈칸의 내용을 반드시 채우십시오.");
     Connection conn = null;
     Statement stmt = null;
     try {
