@@ -4,12 +4,16 @@
 			<TITLE>방명록 작성</TITLE>
 	</HEAD>
 	<BODY>
-		<FORM action=test_input.jsp method=POST>
+		<FORM action=test_input.jsp method=POST enctype="multipart/form-data">
 			제목 : <input type=TEXT name=title size=20><BR>
 			작성자 : <input type=TEXT name=name size=17><BR>
 			<BR>
 			<textarea cols=30 rows=5 name=message></textarea><BR><BR>
+			<input type=file name=image><BR><BR>
 			<input type=submit value='작성완료'>
-		</FORM>	
+		</FORM>
+		<FORM action=test_board.jsp method=POST>
+			<input type=submit value='돌아가기'>
+		</FORM>
 	</BODY>
 </HTML>

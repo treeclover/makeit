@@ -3,7 +3,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	int num = 0, cnt = 0;
-	String title = null, name = null, message = null;
+	String title = null, name = null, message = null, image = null;
 	Connection conn = null;
     Statement stmt = null;
 %>
@@ -15,11 +15,11 @@
 		<%
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/board", "root", "1234");
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/imgmsg", "root", "1234");
 				if (conn == null)
 					throw new Exception("데이터베이스에 연결할 수 없습니다.<BR>");
 				stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from message;");
+				ResultSet rs = stmt.executeQuery("select * from imgmsg;");
 				rs.afterLast();
 				while(rs.previous()) {
 					out.println("----------------------------------<BR>");
@@ -27,17 +27,22 @@
 					title = rs.getString("title");
 					name = rs.getString("name");
 					message = rs.getString("content");
+					image = rs.getString("image");
 		%>
 		글번호 : <%= num %> &nbsp;&nbsp;&nbsp; 글쓴이 : <%= name %> <BR>
 		제목 : <%= title %><BR><BR>
+		<% if(image != null) {
+			out.println("<img src='"+ image +"' width='300' height='220' alt='' border='0'><BR><BR>");
+		}
+		%>
 		<%= message %><BR>
 		
 		<%
 				} 
 			} catch (SQLException e) {
-				out.println("작성된 방명록이 존재하지 않습니다.");
+				out.println("SQL 작성된 방명록이 존재하지 않습니다.");
 			} catch (IOException e) {
-				out.println("작성된 방명록이 존재하지 않습니다.");
+				out.println("IO 작성된 방명록이 존재하지 않습니다.");
 			}
 			finally {
 				try { 

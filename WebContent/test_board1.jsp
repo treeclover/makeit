@@ -6,8 +6,7 @@
 	request.setCharacterEncoding("utf-8");
 	JSONObject messages = new JSONObject();
 	JSONArray array = new JSONArray();
-	int num = 0, cnt = 0;
-	String title = null, name = null, message = null;
+	int num = 0;
 	Connection conn = null;
     Statement stmt = null;
 	try {
@@ -16,7 +15,7 @@
 		if (conn == null)
 			throw new Exception("데이터베이스에 연결할 수 없습니다.<BR>");
 		stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from message;");
+		ResultSet rs = stmt.executeQuery("select * from imgmsg;");
 		rs.afterLast();
 		while(rs.previous()) {
 			messages = new JSONObject();
@@ -24,6 +23,7 @@
 			messages.put("title", rs.getString("title"));
 			messages.put("author", rs.getString("name"));
 			messages.put("message", rs.getString("content"));
+			messages.put("imagepath", rs.getString("image"));
 			array.add(messages);
 			}
 		out.print(array);
