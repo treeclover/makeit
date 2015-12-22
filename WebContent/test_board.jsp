@@ -35,10 +35,8 @@
 		<%
 				} 
 			} catch (SQLException e) {
-				cnt++;
 				out.println("작성된 방명록이 존재하지 않습니다.");
 			} catch (IOException e) {
-				cnt++;
 				out.println("작성된 방명록이 존재하지 않습니다.");
 			}
 			finally {
@@ -55,8 +53,8 @@
 			}
 			if(name != null) {
 				out.println("----------------------------------");
-			} else if(cnt == 1) {
-				out.println("작성된 방명록이 존재하지 않습니다.");
+			} else {
+				out.println("방명록이 존재하지 않습니다.");
 			}
 		%>
 		<FORM action=test_write.html method=POST>

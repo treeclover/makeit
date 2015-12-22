@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="application/json; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import = "java.sql.*, java.io.*" %>
 <%
 	request.setCharacterEncoding("utf-8");
 	String title = request.getParameter("title");
-	String name = request.getParameter("author");
-	String message = request.getParameter("content");
+	String name = request.getParameter("name");
+	String message = request.getParameter("message");
 	if (title == null || name == null || message == null) 
         throw new Exception("방명록 작성 시 빈칸의 내용을 반드시 채우십시오.");
     Connection conn = null;
