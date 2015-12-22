@@ -36,5 +36,5 @@
         catch (Exception ignored) {
         }
     }
-    response.sendRedirect("test_board.jsp");
+    response.sendRedirect("test_board1.jsp");
 %>

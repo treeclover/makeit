@@ -2,7 +2,7 @@
 <%@ page import = "java.sql.*, java.io.*" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	int num = 0;
+	int num = 0, cnt = 0;
 	String title = null, name = null, message = null;
 	Connection conn = null;
     Statement stmt = null;
@@ -35,8 +35,10 @@
 		<%
 				} 
 			} catch (SQLException e) {
+				cnt++;
 				out.println("작성된 방명록이 존재하지 않습니다.");
 			} catch (IOException e) {
+				cnt++;
 				out.println("작성된 방명록이 존재하지 않습니다.");
 			}
 			finally {
@@ -53,7 +55,7 @@
 			}
 			if(name != null) {
 				out.println("----------------------------------");
-			} else {
+			} else if(cnt == 1) {
 				out.println("작성된 방명록이 존재하지 않습니다.");
 			}
 		%>
