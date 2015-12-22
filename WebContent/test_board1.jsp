@@ -1,11 +1,10 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=euc-kr" %>
 <%@ page import = "java.sql.*, java.io.*" %>
 <%@ page import = "java.util.HashMap" %>
 <%@ page import = "org.json.*, org.json.simple.*" %>
 <%
-	request.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("euc-kr");
 	JSONObject messages = new JSONObject();
-	JSONObject msg = new JSONObject();
 	JSONArray array = new JSONArray();
 	int num = 0, cnt = 0;
 	String title = null, name = null, message = null;
@@ -14,7 +13,7 @@
 %>
 <HTML>
 	<HEAD>
-		<TITLE>ë°©ëª…ë¡</TITLE>
+		<TITLE>¹æ¸í·Ï</TITLE>
 	</HEAD>
 	<BODY>
 		<%
@@ -22,22 +21,23 @@
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/board", "root", "1234");
 				if (conn == null)
-					throw new Exception("ë°ì´í„°ë² ì´ìŠ¤ì— ì—°ê²°í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.<BR>");
+					throw new Exception("µ¥ÀÌÅÍº£ÀÌ½º¿¡ ¿¬°áÇÒ ¼ö ¾ø½À´Ï´Ù.<BR>");
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery("select * from message;");
-				while(rs.next()) {
-					out.println("----------------------------------<BR>");
-					messages.put("ê¸€ë²ˆí˜¸", rs.getInt("seq_no"));
-					messages.put("ì œëª©", rs.getString("title"));
-					messages.put("ê¸€ì“´ì´", rs.getString("name"));
-					messages.put("ë‚´ìš©", rs.getString("content"));
+				rs.afterLast();
+				while(rs.previous()) {
+					messages = new JSONObject();
+					messages.put("sequence", rs.getInt("seq_no"));
+					messages.put("title", rs.getString("title"));
+					messages.put("author", rs.getString("name"));
+					messages.put("message", rs.getString("content"));
 					array.add(messages);
-					out.print(array);
 				}
+				out.print(array);
 			} catch (SQLException e) {
-				out.println("ì‘ì„±ëœ ë°©ëª…ë¡ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+				out.println("ÀÛ¼ºµÈ ¹æ¸í·ÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
 			} catch (IOException e) {
-				out.println("ì‘ì„±ëœ ë°©ëª…ë¡ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+				out.println("ÀÛ¼ºµÈ ¹æ¸í·ÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
 			}
 			finally {
 				try { 
@@ -53,7 +53,7 @@
 			}
 		%>
 		<FORM action=test_write.html method=POST>
-			<input type=submit value='ê¸€ì“°ê¸°'>
+			<input type=submit value='±Û¾²±â'>
 		</FORM>
 	</BODY>
 </HTML>

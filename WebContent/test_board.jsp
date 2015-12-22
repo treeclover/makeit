@@ -20,14 +20,15 @@
 					throw new Exception("데이터베이스에 연결할 수 없습니다.<BR>");
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery("select * from message;");
-				while(rs.next()) {
+				rs.afterLast();
+				while(rs.previous()) {
 					out.println("----------------------------------<BR>");
 					num = rs.getInt("seq_no");
 					title = rs.getString("title");
 					name = rs.getString("name");
 					message = rs.getString("content");
 		%>
-		글번호 : <%= num %>     글쓴이 : <%= name %> <BR>
+		글번호 : <%= num %> &nbsp;&nbsp;&nbsp; 글쓴이 : <%= name %> <BR>
 		제목 : <%= title %><BR><BR>
 		<%= message %><BR>
 		
