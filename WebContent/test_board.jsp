@@ -32,7 +32,7 @@
 		글번호 : <%= num %> &nbsp;&nbsp;&nbsp; 글쓴이 : <%= name %> <BR>
 		제목 : <%= title %><BR><BR>
 		<% if(image != null) {
-			out.println("<img src='"+ image +"' width='300' height='220' alt='' border='0'><BR><BR>");
+			out.println("<img src='Img/"+ image +"' width='300' height='220' alt='' border='0'><BR><BR>");
 		}
 		%>
 		<%= message %><BR>
